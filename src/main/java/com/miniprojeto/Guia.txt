@@ -1,0 +1,30 @@
+MVC -------------------------------------------------------------------------------------
+Visão -> Mostra todas as ações a ser realizadas, chama o controlador
+Controlador -> É o intermediador das ações, faz tudo por trás
+Model -> Apenas regra de negócio
+
+FUNCIONALIDADES -------------------------------------------------------------------------
+Consulta de estudantes:
+    - Pesquisar por curso e modalidade; (FEITO)
+    - Pesquisar por id ou nome. (FEITO)
+
+Matrícula em disciplinas:
+    - Matricular estudante com status ativo em alguma disciplina de algum curso;
+    - Listar todas as disciplinas em que um estudante está devidamente matriculado; (*FEITO*)
+    - Remover uma disciplina da matrícula do aluno.
+
+Biblioteca:
+    - Permitir que um estudante com status ativo possa reservar um livro;
+    - Listar todos os livros reservados pelo estudante;
+    - Cancelar a reserva de um livro selecionado.
+
+-----------------------------------------------------------------------------------------
+Na parte de subjects, fazer menu mostrando as disciplinas disponíveis para o aluno se
+matricular.
+No menu vc, seleciona o id da disciplina e o aluno será inscrito
+-----------------------------------------------------------------------------------------
+Adicionar alguma view que dê para visualizar tudo
+Student displayAllStudents() -> adicionar view para esse método
+-----------------------------------------------------------------------------------------
+AVISOS:
+*Mudar os toString dos Models para Views.
