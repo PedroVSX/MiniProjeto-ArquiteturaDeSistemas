@@ -11,6 +11,7 @@ public class Student {
     private boolean modality; // 0: Presencial | 1: EAD
     private boolean status; // 0: Trancado | 1: Ativo
     private List<Subject> enrolledSubjects;
+    private List<Book> reservedBooks;
 
     public Student(int id, String name, String course, boolean modality, boolean status) {
         this.id = id;
@@ -19,6 +20,7 @@ public class Student {
         this.modality = modality;
         this.status = status;
         this.enrolledSubjects = new ArrayList<>();
+        this.reservedBooks = new ArrayList<>();
     }
 
     public int getId() {
@@ -53,6 +55,20 @@ public class Student {
 
     public boolean removeSubjectById(int subjectId) {
         return enrolledSubjects.removeIf(subject -> subject.getId() == subjectId);
+    }
+
+    public List<Book> getReservedBooks() {
+        return reservedBooks;
+    }
+
+    public void addBook(Book book) {
+        if (!reservedBooks.contains(book)) {
+            reservedBooks.add(book);
+        }
+    }
+
+    public boolean removeBookById(int bookId) {
+        return reservedBooks.removeIf(book -> book.getId() == bookId);
     }
 
     @Override

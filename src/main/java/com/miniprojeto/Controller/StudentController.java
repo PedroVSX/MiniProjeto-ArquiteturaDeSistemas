@@ -1,6 +1,6 @@
 package com.miniprojeto.Controller;
 
-import com.miniprojeto.Microservices.StudentService;
+import com.miniprojeto.Services.StudentService;
 import com.miniprojeto.Model.Student;
 import com.miniprojeto.View.StudentView;
 import java.util.List;
@@ -14,12 +14,6 @@ public class StudentController {
         this.service = service;
         this.view = new StudentView(this);
         service.loadAllStudents();
-    }
-
-    public Student getStudentById(int id) {
-        return service.getAllStudents().stream()
-                .filter(student -> id == student.getId())
-                .toList().getFirst();
     }
 
     public void searchStudentsByCourse(String course) {

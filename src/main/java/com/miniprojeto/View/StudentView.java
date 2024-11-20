@@ -61,11 +61,6 @@ public class StudentView {
         return input.nextLine();
     }
 
-    public void displayAllStudents() {
-        System.out.println("------------------------ Estudantes ------------------------");
-        controller.displayAllStudents();
-    }
-
     public void displayStudents(List<Student> list) {
         for (Student student : list) {
             System.out.println(student + "\n");

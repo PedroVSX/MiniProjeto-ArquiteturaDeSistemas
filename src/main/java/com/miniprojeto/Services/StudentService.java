@@ -1,4 +1,4 @@
-package com.miniprojeto.Microservices;
+package com.miniprojeto.Services;
 
 import com.miniprojeto.Model.Student;
 
@@ -14,7 +14,7 @@ public class StudentService {
     private final String STUDENT_API_URL = "https://rmi6vdpsq8.execute-api.us-east-2.amazonaws.com/msAluno";
     private final HttpClient client = HttpClient.newHttpClient();
     private final JsonParser<Student> parser = new StudentJsonParser();
-    private List<Student> studentList = new ArrayList<>();
+    private final List<Student> studentList = new ArrayList<>();
 
     public void loadAllStudents() {
         HttpRequest request = HttpRequest.newBuilder()

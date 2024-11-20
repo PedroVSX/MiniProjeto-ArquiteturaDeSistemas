@@ -1,4 +1,4 @@
-package com.miniprojeto.Microservices;
+package com.miniprojeto.Services;
 
 import java.util.List;
 

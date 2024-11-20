@@ -23,7 +23,7 @@ public class StudentViewMenu {
                 3 - Por curso e modalidade
                 4 - Por ID
                 5 - Por nome
-                0 - Cancelar
+                0 - Sair
                 
                 """);
 

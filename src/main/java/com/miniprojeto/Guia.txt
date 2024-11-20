@@ -26,5 +26,9 @@ No menu vc, seleciona o id da disciplina e o aluno será inscrito
 Adicionar alguma view que dê para visualizar tudo
 Student displayAllStudents() -> adicionar view para esse método
 -----------------------------------------------------------------------------------------
+Fazer menu de disciplinas
+Deixar recursivo a parte do menu de disciplinas
+-----------------------------------------------------------------------------------------
 AVISOS:
 *Mudar os toString dos Models para Views.
+*Lembrar do negócio de acoplamento que o GPT disse
