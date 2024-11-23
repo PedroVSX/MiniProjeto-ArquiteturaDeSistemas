@@ -30,8 +30,4 @@ public class Subject {
                 "\nCurso: " + course +
                 "\nNome: " + name;
     }
-
-    public String toStringCourseAndName() {
-        return name + " (" + course + ")";
-    }
 }

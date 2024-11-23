@@ -53,21 +53,11 @@ public class Student {
 
     @Override
     public String toString() {
-        String subjects = "";
-        for (int i = 0; i < enrolledSubjects.size(); i++) {
-            if (i == enrolledSubjects.size() - 1) {
-                subjects += enrolledSubjects.get(i).toStringCourseAndName();
-            } else {
-                subjects += enrolledSubjects.get(i).toStringCourseAndName() + ", ";
-            }
-        }
-
         return "Id: " + id +
                 "\nNome: " + name +
                 "\nCurso: " + course +
                 "\nModalidade: " + (modality ? "EAD" : "Presencial") +
-                "\nStatus: " + (status ? "Ativo" : "Trancado") +
-                "\nDisciplinas Matriculadas: " + (enrolledSubjects.isEmpty() ? "Nenhuma" : subjects);
+                "\nStatus: " + (status ? "Ativo" : "Trancado");
     }
 
 }

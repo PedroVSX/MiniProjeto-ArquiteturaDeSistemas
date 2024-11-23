@@ -42,7 +42,7 @@ public class SubjectView {
         System.out.print("Digite o id do estudante a ser matriculado: ");
         int studentId = input.getInt();
 
-        System.out.println("Digite o id da disciplina a matricular: ");
+        System.out.print("Digite o id da disciplina a matricular: ");
         int subjectId = input.getInt();
 
         String response = enrollmentController.enrollStudent(studentId, subjectId);
@@ -54,7 +54,7 @@ public class SubjectView {
         System.out.print("Digite o id do estudante a ser desmatriculado: ");
         int studentId = input.getInt();
 
-        System.out.println("Digite o id da disciplina a desmatricular: ");
+        System.out.print("Digite o id da disciplina a desmatricular: ");
         int subjectId = input.getInt();
 
         String response = enrollmentController.unenrollStudent(studentId, subjectId);
