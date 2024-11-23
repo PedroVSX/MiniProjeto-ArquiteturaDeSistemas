@@ -1,63 +1,65 @@
 package com.miniprojeto.View;
 
-import com.miniprojeto.Controller.SubjectController;
-import com.miniprojeto.Model.Subject;
 
-import java.util.List;
-import java.util.Scanner;
+import com.miniprojeto.Controller.EnrollmentController;
+import com.miniprojeto.Controller.SubjectController;
 
 public class SubjectView {
 
-    private final SubjectViewMenu menu;
-    private final SubjectController controller;
-    private final Scanner input = new Scanner(System.in);
+    private SubjectController subjectController;
+    private EnrollmentController enrollmentController;
+    private InputHandler input = new InputHandler();
 
-    public SubjectView(SubjectController controller) {
-        this.controller = controller;
-        this.menu = new SubjectViewMenu(this, controller);
+    public SubjectView(SubjectController subjectController, EnrollmentController enrollmentController) {
+        this.subjectController = subjectController;
+        this.enrollmentController = enrollmentController;
     }
 
-    public void manageStudentsSubjects() {
-        menu.showOptions();
+    public void getAllSubjects() {
+        String response = subjectController.getAllSubjects();
+        System.out.println(response);
     }
 
-    public int getById() {
-        String userInput = input.nextLine();
-        int id;
+    public void searchSubjectById() {
+        System.out.print("Digite o id da disciplina: ");
+        int id = input.getInt();
 
-        try {
-            id = Integer.parseInt(userInput);
-        } catch (NumberFormatException e) {
-            id = -1;
-        }
+        String response = subjectController.getSubjectById(id);
 
-        return id;
+        System.out.println(response);
     }
 
-    public void enrollmentSuccess() {
-        System.out.println("Estudante matriculado com sucesso!");
+    public void searchSubjectByName() {
+        System.out.print("Digite o nome da disciplina: ");
+        String name = input.getString();
+
+        String response = subjectController.getSubjectByName(name);
+
+        System.out.println(response);
     }
 
-    public void enrollmentError() {
-        System.out.println("Não foi possível matricular o estudante!");
+    public void enrollStudentInSubject() {
+        System.out.print("Digite o id do estudante a ser matriculado: ");
+        int studentId = input.getInt();
+
+        System.out.println("Digite o id da disciplina a matricular: ");
+        int subjectId = input.getInt();
+
+        String response = enrollmentController.enrollStudent(studentId, subjectId);
+
+        System.out.println(response);
     }
 
-    public void unenrollmentSuccess() {
-        System.out.println("Estudante desmatriculado com sucesso!");
+    public void unenrollStudentInSubject() {
+        System.out.print("Digite o id do estudante a ser desmatriculado: ");
+        int studentId = input.getInt();
+
+        System.out.println("Digite o id da disciplina a desmatricular: ");
+        int subjectId = input.getInt();
+
+        String response = enrollmentController.unenrollStudent(studentId, subjectId);
+
+        System.out.println(response);
     }
 
-    public void unenrollmentError() {
-        System.out.println("Não foi possível desmatricular o estudante!");
-    }
-
-    public void displaySubjects(List<Subject> subjects) {
-        System.out.println("------------------------ Disciplinas ------------------------");
-        if (subjects.isEmpty()) {
-            System.out.println("Não há disciplinas disponíveis.");
-        } else {
-            for (Subject subject : subjects) {
-                System.out.println(subject + "\n");
-            }
-        }
-    }
 }

@@ -1,62 +1,98 @@
 package com.miniprojeto.Controller;
 
-import com.miniprojeto.Services.StudentService;
+import com.miniprojeto.Iterator.ModelIterator;
+import com.miniprojeto.Iterator.StudentIterator;
+import com.miniprojeto.Iterator.SubjectIterator;
 import com.miniprojeto.Model.Student;
-import com.miniprojeto.View.StudentView;
+import com.miniprojeto.Model.Subject;
+import com.miniprojeto.Services.StudentService;
+
 import java.util.List;
 
 public class StudentController {
 
     private final StudentService service;
-    private StudentView view;
 
     public StudentController(StudentService service) {
         this.service = service;
-        this.view = new StudentView(this);
-        service.loadAllStudents();
     }
 
-    public void searchStudentsByCourse(String course) {
-        List<Student> list = service.getAllStudents().stream()
-                .filter(student -> course.equalsIgnoreCase(student.getCourse()))
-                .toList();
-
-        view.displayStudents(list);
+    public String getAllStudents() {
+        return studentIterator(service.getAllStudents());
     }
 
-    public void searchStudentsByModality(boolean modality) {
-        List<Student> list =  service.getAllStudents().stream()
-                .filter(student -> modality == student.getModality())
-                .toList();
+    public String searchByCourse(String course) {
+        List<Student> students = service.getStudentsByCourse(course);
 
-        view.displayStudents(list);
+        if (!students.isEmpty()) {
+            return studentIterator(students);
+        }
+
+        return "Nenhum estudante foi encontrado!";
     }
 
-    public void searchStudentsByCourseAndModality(String course, boolean modality) {
-        List<Student> list = service.getAllStudents().stream()
-                .filter(student -> course.equalsIgnoreCase(student.getCourse()) && modality == student.getModality())
-                .toList();
+    public String searchByModality(String modality) {
+        List<Student> students = service.getStudentsByModality(modality);
 
-        view.displayStudents(list);
+        if (!students.isEmpty()) {
+            return studentIterator(students);
+        }
+
+        return "Nenhum estudante foi encontrado!";
     }
 
-    public void searchStudentsById(int id) {
-        List<Student> list = service.getAllStudents().stream()
-                .filter(student -> id == student.getId())
-                .toList();
+    public String searchByCorseAndModality(String course, String modality) {
+        List<Student> students = service.getStudentsByCourseAndModality(course, modality);
 
-        view.displayStudents(list);
+        if (!students.isEmpty()) {
+            return studentIterator(students);
+        }
+
+        return "Nenhum estudante foi encontrado!";
     }
 
-    public void searchStudentsByName(String name) {
-        List<Student> list = service.getAllStudents().stream()
-                .filter(student -> name.equalsIgnoreCase(student.getName()))
-                .toList();
+    public String searchById(int id) {
+        List<Student> students = service.getStudentsById(id);
 
-        view.displayStudents(list);
+        if (!students.isEmpty()) {
+            return studentIterator(students);
+        }
+
+        return "Nenhum estudante foi encontrado!";
     }
 
-    public void displayAllStudents() {
-        view.displayStudents(service.getAllStudents());
+    public String searchByName(String name) {
+        List<Student> students = service.getStudentsByName(name);
+
+        if (!students.isEmpty()) {
+            return studentIterator(students);
+        }
+
+        return "Nenhum estudante foi encontrado!";
     }
+
+    public String getStudentSubjects(int id) {
+        List<Subject> subjects = service.getSubjectsByStudentId(id);
+
+        if (!subjects.isEmpty()) {
+            ModelIterator<Subject> iterator = new SubjectIterator(subjects);
+            String s = "";
+
+            s += iterator.getNext().toString() + "\n";
+
+            return s;
+        }
+
+        return "Estudante não está matriculado em nenhuma disciplina!";
+    }
+
+    private String studentIterator(List<Student> studentList) {
+        ModelIterator<Student> iterator = new StudentIterator(studentList);
+        String s = "";
+
+        s += iterator.getNext().toString() + "\n";
+
+        return s;
+    }
+
 }

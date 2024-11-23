@@ -1,28 +1,34 @@
 package com.miniprojeto;
 
-import com.miniprojeto.Controller.BookController;
-import com.miniprojeto.Controller.StudentController;
-import com.miniprojeto.Controller.SubjectController;
+import com.miniprojeto.Controller.*;
 import com.miniprojeto.Services.*;
-import com.miniprojeto.View.BookView;
+import com.miniprojeto.View.LibraryView;
+import com.miniprojeto.View.Menu;
 import com.miniprojeto.View.StudentView;
 import com.miniprojeto.View.SubjectView;
 
 public class Main {
     public static void main(String[] args) {
-        EnrollmentService enrollmentService = new EnrollmentService();
+        StudentService studentService = new StudentService();
+        SubjectService subjectService = new SubjectService();
         LibraryService libraryService = new LibraryService();
 
-        StudentService studentService = new StudentService();
+        EnrollmentService enrollmentService = new EnrollmentService(studentService, subjectService);
+        ReservationService reservationService = new ReservationService(studentService, libraryService);
+
         StudentController studentController = new StudentController(studentService);
+        SubjectController subjectController = new SubjectController(subjectService);
+        LibraryController libraryController = new LibraryController(libraryService);
+
+        EnrollmentController enrollmentController = new EnrollmentController(enrollmentService);
+        ReservationController reservationController = new ReservationController(reservationService);
+
         StudentView studentView = new StudentView(studentController);
+        SubjectView subjectView = new SubjectView(subjectController, enrollmentController);
+        LibraryView libraryView = new LibraryView(libraryController, reservationController);
 
-        SubjectService subjectService = new SubjectService();
-        SubjectController subjectController = new SubjectController(subjectService, studentService, studentView, enrollmentService);
-        SubjectView subjectView = new SubjectView(subjectController);
+        Menu menu = new Menu(studentView, subjectView, libraryView);
 
-        BookService bookService = new BookService();
-        BookController bookController = new BookController(bookService, studentView, studentService, libraryService);
-        BookView bookView = new BookView(bookController);
+        menu.start();
     }
 }

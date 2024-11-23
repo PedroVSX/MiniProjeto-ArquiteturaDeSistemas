@@ -1,63 +1,52 @@
 package com.miniprojeto.Controller;
 
-import com.miniprojeto.Services.EnrollmentService;
-import com.miniprojeto.Services.StudentService;
-import com.miniprojeto.Services.SubjectService;
-import com.miniprojeto.Model.Student;
+
+import com.miniprojeto.Iterator.ModelIterator;
+import com.miniprojeto.Iterator.SubjectIterator;
 import com.miniprojeto.Model.Subject;
-import com.miniprojeto.View.StudentView;
-import com.miniprojeto.View.SubjectView;
+import com.miniprojeto.Services.SubjectService;
 
 import java.util.List;
 
 public class SubjectController {
 
     private final SubjectService service;
-    private final SubjectView view;
-    private final StudentService studentService;
-    private final StudentView studentView;
-    private final EnrollmentService enrollmentService;
 
-    public SubjectController(SubjectService service, StudentService studentService, StudentView studentView, EnrollmentService enrollmentService) {
+    public SubjectController(SubjectService service) {
         this.service = service;
-        this.view = new SubjectView(this);
-        this.studentService = studentService;
-        this.studentView = studentView;
-        this.enrollmentService = enrollmentService;
-        service.loadAllSubjects();
     }
 
-    public void enrollStudentInSubject(int studentId, int subjectId) {
-        Student student = studentService.getAllStudents().get(studentId - 1);
-        Subject subject = service.getAllSubjects().get(subjectId - 1);
+    public String getAllSubjects() {
+        return subjectIterator(service.getAllSubjects());
+    }
 
-        boolean success = enrollmentService.enroll(student, subject);
+    public String getSubjectById(int id) {
+        List<Subject> subjects = service.getSubjectsById(id);
 
-        if (success) {
-            view.enrollmentSuccess();
-        } else {
-            view.enrollmentError();
+        if (!subjects.isEmpty()) {
+            return subjectIterator(subjects);
         }
+
+        return "Nenhuma disciplina foi encontrada!";
     }
 
-    public void unenrollStudentFromSubject(int studentId, int subjectId) {
-        Student student = studentService.getAllStudents().get(studentId - 1);
+    public String getSubjectByName(String name) {
+        List<Subject> subjects = service.getSubjectsByName(name);
 
-        boolean success = enrollmentService.unenroll(student, subjectId);
-
-        if (success) {
-            view.unenrollmentSuccess();
-        } else {
-            view.unenrollmentError();
+        if (!subjects.isEmpty()) {
+            return subjectIterator(subjects);
         }
+
+        return "Nenhuma disciplina foi encontrada!";
     }
 
-    public void displayAllSubjects() {
-        view.displaySubjects(service.getAllSubjects());
-    }
+    public String subjectIterator(List<Subject> subjectList) {
+        ModelIterator<Subject> iterator = new SubjectIterator(subjectList);
+        String s = "";
 
-    public void displayAllStudents() {
-        studentView.displayStudents(studentService.getAllStudents());
+        s += iterator.getNext().toString() + "\n";
+
+        return s;
     }
 
 }

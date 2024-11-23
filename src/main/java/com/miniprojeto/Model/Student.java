@@ -47,28 +47,8 @@ public class Student {
         return enrolledSubjects;
     }
 
-    public void addSubject(Subject subject) {
-        if (!enrolledSubjects.contains(subject)) {
-            enrolledSubjects.add(subject);
-        }
-    }
-
-    public boolean removeSubjectById(int subjectId) {
-        return enrolledSubjects.removeIf(subject -> subject.getId() == subjectId);
-    }
-
     public List<Book> getReservedBooks() {
         return reservedBooks;
-    }
-
-    public void addBook(Book book) {
-        if (!reservedBooks.contains(book)) {
-            reservedBooks.add(book);
-        }
-    }
-
-    public boolean removeBookById(int bookId) {
-        return reservedBooks.removeIf(book -> book.getId() == bookId);
     }
 
     @Override

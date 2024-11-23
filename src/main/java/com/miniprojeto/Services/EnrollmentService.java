@@ -5,16 +5,36 @@ import com.miniprojeto.Model.Subject;
 
 public class EnrollmentService {
 
-    public boolean enroll(Student student, Subject subject) {
-        if (student.isActive() && !student.getEnrolledSubjects().contains(subject)) {
-            student.addSubject(subject);
+    private final StudentService studentService;
+    private final SubjectService subjectService;
+
+    public EnrollmentService(StudentService studentService, SubjectService subjectService) {
+        this.studentService = studentService;
+        this.subjectService = subjectService;
+    }
+
+    public boolean enrollStudentInSubject(int studentId, int subjectId) {
+        Student student = studentService.getStudentsById(studentId).getFirst();
+        Subject subject = subjectService.getSubjectsById(subjectId).getFirst();
+
+        if (!student.getEnrolledSubjects().contains(subject)) {
+            student.getEnrolledSubjects().add(subject);
             return true;
         }
+
         return false;
     }
 
-    public boolean unenroll(Student student, int subjectId) {
-        return student.removeSubjectById(subjectId);
+    public boolean unenrollStudentInSubject(int studentId, int subjectId) {
+        Student student = studentService.getStudentsById(studentId).getFirst();
+        Subject subject = subjectService.getSubjectsById(subjectId).getFirst();
+
+        if (student.getEnrolledSubjects().contains(subject)) {
+            student.getEnrolledSubjects().remove(subject);
+            return true;
+        }
+
+        return false;
     }
 
 }

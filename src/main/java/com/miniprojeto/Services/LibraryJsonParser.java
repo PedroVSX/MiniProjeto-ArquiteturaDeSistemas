@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookJsonParser implements JsonParser<Book> {
+public class LibraryJsonParser implements JsonParser<Book> {
 
     @Override
     public List<Book> parse(String responseBody) {

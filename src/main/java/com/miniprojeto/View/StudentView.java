@@ -1,69 +1,76 @@
 package com.miniprojeto.View;
 
 import com.miniprojeto.Controller.StudentController;
-import com.miniprojeto.Model.Student;
-
-import java.util.List;
-import java.util.Scanner;
 
 public class StudentView {
 
-    private StudentViewMenu menu;
     private StudentController controller;
-    private Scanner input = new Scanner(System.in);
+    private InputHandler input = new InputHandler();
 
-    public StudentView(StudentController controller) {
-        this.controller = controller;
-        this.menu = new StudentViewMenu(this, controller);
+    public StudentView(StudentController studentController) {
+        this.controller = studentController;
     }
 
-    public void searchStudent() {
-        menu.searchChoice();
+    public void getAllStudents() {
+        String response = controller.getAllStudents();
+        System.out.println(response);
     }
 
-    protected String getByCourse() {
-        System.out.print("Digite o curso: ");
-        return input.nextLine().toUpperCase();
+    public void searchStudentById() {
+        System.out.print("Digite o id do estudante: ");
+        int id = input.getInt();
+
+        String response = controller.searchById(id);
+
+        System.out.println(response);
     }
 
-    protected String getByModality() {
-        System.out.print("Digite a modalidade: ");
-        String modality = input.nextLine().toUpperCase();
+    public void searchStudentByName() {
+        System.out.println("Digite o nome do estudante: ");
+        String name = input.getString();
 
-        switch (modality) {
-            case "EAD", "PRESENCIAL" -> {
-                return modality;
-            }
+        String response = controller.searchByName(name);
 
-            default -> {
-                System.out.println("Digite uma modalidade válida!");
-                return getByModality();
-            }
-        }
+        System.out.println(response);
     }
 
-    protected int getById() {
-        System.out.print("Digite o id: ");
-        int id;
-        try {
-            id = Integer.parseInt(input.nextLine());
+    public void searchStudentByCourse() {
+        System.out.println("Digite o curso do estudante: ");
+        String course = input.getString();
 
-        } catch (Exception e) {
-            System.out.println("Insira um número!");
-            id = getById();
-        }
+        String response = controller.searchByCourse(course);
 
-        return id;
+        System.out.println(response);
     }
 
-    protected String getByName() {
-        System.out.print("Digite o nome: ");
-        return input.nextLine();
+    public void searchStudentByModality() {
+        System.out.println("Digite a modalidade do estudante: ");
+        String modality = input.getString();
+
+        String response = controller.searchByModality(modality);
+
+        System.out.println(response);
     }
 
-    public void displayStudents(List<Student> list) {
-        for (Student student : list) {
-            System.out.println(student + "\n");
-        }
+    public void searchStudentByCourseAndModality() {
+        System.out.println("Digite o curso do estudante: ");
+        String course = input.getString();
+
+        System.out.println("Digite a modalidade do estudante: ");
+        String modality = input.getString();
+
+        String response = controller.searchByCorseAndModality(course, modality);
+
+        System.out.println(response);
     }
+
+    public void getStudentEnrolledSubjects() {
+        System.out.print("Digite o id do estudante: ");
+        int id = input.getInt();
+
+        String response = controller.getStudentSubjects(id);
+
+        System.out.println(response);
+    }
+
 }

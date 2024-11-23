@@ -16,6 +16,10 @@ public class SubjectService {
     private final JsonParser<Subject> parser = new SubjectJsonParser();
     private List<Subject> subjectList = new ArrayList<>();
 
+    public SubjectService() {
+        loadAllSubjects();
+    }
+
     public void loadAllSubjects() {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(SUBJECT_API_URL))
@@ -36,6 +40,18 @@ public class SubjectService {
 
     public List<Subject> getAllSubjects() {
         return subjectList;
+    }
+
+    public List<Subject> getSubjectsById(int id) {
+        return subjectList.stream()
+                .filter(subject -> subject.getId() == id)
+                .toList();
+    }
+
+    public List<Subject> getSubjectsByName(String name) {
+        return subjectList.stream()
+                .filter(subject -> subject.getName().equalsIgnoreCase(name))
+                .toList();
     }
 
 }
