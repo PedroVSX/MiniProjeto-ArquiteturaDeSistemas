@@ -20,7 +20,7 @@ public class LibraryView {
     }
 
     public void searchBookById() {
-        System.out.println("Digite o id do livro: ");
+        System.out.print("Digite o id do livro: ");
         int id = input.getInt();
 
         String response = libraryController.getBookById(id);
@@ -29,7 +29,7 @@ public class LibraryView {
     }
 
     public void searchBookByName() {
-        System.out.println("Digite o nome do livro: ");
+        System.out.print("Digite o nome do livro: ");
         String name = input.getString();
 
         String response = libraryController.getBookByName(name);
@@ -38,10 +38,10 @@ public class LibraryView {
     }
 
     public void reserveBookToStudent() {
-        System.out.println("Digite o id do estudante para reserva: ");
+        System.out.print("Digite o id do estudante para reserva: ");
         int studentId = input.getInt();
 
-        System.out.println("Digite o id do livro a ser reservado: ");
+        System.out.print("Digite o id do livro a ser reservado: ");
         int bookId = input.getInt();
 
         String response = reservationController.reserveBook(studentId, bookId);
@@ -50,10 +50,10 @@ public class LibraryView {
     }
 
     public void cancelStudentBookReservation() {
-        System.out.println("Digite o id do estudante para devolução: ");
+        System.out.print("Digite o id do estudante para devolução: ");
         int studentId = input.getInt();
 
-        System.out.println("Digite o id do livro a ser devolvido: ");
+        System.out.print("Digite o id do livro a ser devolvido: ");
         int bookId = input.getInt();
 
         String response = reservationController.cancelReservation(studentId, bookId);

@@ -48,7 +48,7 @@ public class Book {
         this.year = year;
     }
 
-    public boolean isStatus() {
+    public boolean isAvailable() {
         return status;
     }
 

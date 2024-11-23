@@ -1,5 +1,6 @@
 package com.miniprojeto.Services;
 
+import com.miniprojeto.Model.Book;
 import com.miniprojeto.Model.Student;
 import com.miniprojeto.Model.Subject;
 
@@ -81,6 +82,12 @@ public class StudentService {
         Student student = getStudentsById(id).getFirst();
 
         return student.getEnrolledSubjects();
+    }
+
+    public List<Book> getBooksByStudentId(int id) {
+        Student student = getStudentsById(id).getFirst();
+
+        return student.getReservedBooks();
     }
 
 }

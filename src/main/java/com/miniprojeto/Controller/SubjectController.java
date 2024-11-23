@@ -44,7 +44,9 @@ public class SubjectController {
         ModelIterator<Subject> iterator = new SubjectIterator(subjectList);
         String s = "";
 
-        s += iterator.getNext().toString() + "\n";
+        while (iterator.hasNext()) {
+            s += iterator.getNext().toString() + "\n\n";
+        }
 
         return s;
     }

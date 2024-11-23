@@ -44,7 +44,9 @@ public class LibraryController {
         ModelIterator<Book> iterator = new BookIterator(bookList);
         String s = "";
 
-        s += iterator.getNext().toString() + "\n";
+        while (iterator.hasNext()) {
+            s += iterator.getNext().toString() + "\n\n";
+        }
 
         return s;
     }

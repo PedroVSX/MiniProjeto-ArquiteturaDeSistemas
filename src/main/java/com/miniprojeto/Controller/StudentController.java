@@ -1,8 +1,10 @@
 package com.miniprojeto.Controller;
 
+import com.miniprojeto.Iterator.BookIterator;
 import com.miniprojeto.Iterator.ModelIterator;
 import com.miniprojeto.Iterator.StudentIterator;
 import com.miniprojeto.Iterator.SubjectIterator;
+import com.miniprojeto.Model.Book;
 import com.miniprojeto.Model.Student;
 import com.miniprojeto.Model.Subject;
 import com.miniprojeto.Services.StudentService;
@@ -78,7 +80,9 @@ public class StudentController {
             ModelIterator<Subject> iterator = new SubjectIterator(subjects);
             String s = "";
 
-            s += iterator.getNext().toString() + "\n";
+            while (iterator.hasNext()) {
+                s += iterator.getNext().toString() + "\n\n";
+            }
 
             return s;
         }
@@ -86,11 +90,30 @@ public class StudentController {
         return "Estudante não está matriculado em nenhuma disciplina!";
     }
 
+    public String getStudentReservedBooks(int id) {
+        List<Book> books = service.getBooksByStudentId(id);
+
+        if (!books.isEmpty()) {
+            ModelIterator<Book> iterator = new BookIterator(books);
+            String s = "";
+
+            while (iterator.hasNext()) {
+                s += iterator.getNext().toString() + "\n\n";
+            }
+
+            return s;
+        }
+
+        return "Estudante não reservou nenhum livro!";
+    }
+
     private String studentIterator(List<Student> studentList) {
         ModelIterator<Student> iterator = new StudentIterator(studentList);
         String s = "";
 
-        s += iterator.getNext().toString() + "\n";
+        while (iterator.hasNext()) {
+            s += iterator.getNext().toString() + "\n\n";
+        }
 
         return s;
     }

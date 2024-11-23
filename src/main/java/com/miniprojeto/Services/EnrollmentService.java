@@ -17,7 +17,7 @@ public class EnrollmentService {
         Student student = studentService.getStudentsById(studentId).getFirst();
         Subject subject = subjectService.getSubjectsById(subjectId).getFirst();
 
-        if (!student.getEnrolledSubjects().contains(subject)) {
+        if (student.isActive() && !student.getEnrolledSubjects().contains(subject)) {
             student.getEnrolledSubjects().add(subject);
             return true;
         }
@@ -29,7 +29,7 @@ public class EnrollmentService {
         Student student = studentService.getStudentsById(studentId).getFirst();
         Subject subject = subjectService.getSubjectsById(subjectId).getFirst();
 
-        if (student.getEnrolledSubjects().contains(subject)) {
+        if (student.isActive() && student.getEnrolledSubjects().contains(subject)) {
             student.getEnrolledSubjects().remove(subject);
             return true;
         }

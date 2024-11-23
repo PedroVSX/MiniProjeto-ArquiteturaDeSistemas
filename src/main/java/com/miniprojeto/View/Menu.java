@@ -32,14 +32,15 @@ public class Menu {
                 7 - Procurar estudantes por modalidade
                 8 - Procurar estudantes por curso e modalidade
                 9 - Mostrar disciplinas de um estudante
-                10 - Procurar disciplina por ID
-                11 - Procurar disciplina por nome
-                12 - Matricular estudante em disciplina
-                13 - Desmatricular estudante de disciplina
-                14 - Procurar livro por ID
-                15 - Procurar livro por nome
-                16 - Reservar livro a um estudante
-                17 - Devolver livro de um estudante
+                10 - Mostrar livros reservados de um estudante
+                11 - Procurar disciplina por ID
+                12 - Procurar disciplina por nome
+                13 - Matricular estudante em disciplina
+                14 - Desmatricular estudante de disciplina
+                15 - Procurar livro por ID
+                16 - Procurar livro por nome
+                17 - Reservar livro a um estudante
+                18 - Devolver livro de um estudante
                 0 - Sair da aplicação
                 
                 """);
@@ -62,14 +63,15 @@ public class Menu {
             case 7 -> studentView.searchStudentByModality();
             case 8 -> studentView.searchStudentByCourseAndModality();
             case 9 -> studentView.getStudentEnrolledSubjects();
-            case 10 -> subjectView.searchSubjectById();
-            case 11 -> subjectView.searchSubjectByName();
-            case 12 -> subjectView.enrollStudentInSubject();
-            case 13 -> subjectView.unenrollStudentInSubject();
-            case 14 -> libraryView.searchBookById();
-            case 15 -> libraryView.searchBookByName();
-            case 16 -> libraryView.reserveBookToStudent();
-            case 17 -> libraryView.cancelStudentBookReservation();
+            case 10 -> studentView.getStudentReservedBooks();
+            case 11 -> subjectView.searchSubjectById();
+            case 12 -> subjectView.searchSubjectByName();
+            case 13 -> subjectView.enrollStudentInSubject();
+            case 14 -> subjectView.unenrollStudentInSubject();
+            case 15 -> libraryView.searchBookById();
+            case 16 -> libraryView.searchBookByName();
+            case 17 -> libraryView.reserveBookToStudent();
+            case 18 -> libraryView.cancelStudentBookReservation();
             default -> System.out.println("Opção inválida!");
         }
 

@@ -16,12 +16,16 @@ public class LibraryJsonParser implements JsonParser<Book> {
 
         for (int i = 0; i < booksJsonArray.length(); i++) {
             JSONObject bookObj = booksJsonArray.getJSONObject(i);
+
+            String statusString = bookObj.optString("status", "Disponível");
+            boolean status = statusString.equalsIgnoreCase("null");
+
             Book book = new Book(
                     bookObj.getInt("id"),
                     bookObj.getString("titulo"),
                     bookObj.getString("autor"),
                     bookObj.getInt("ano"),
-                    bookObj.getString("status").equalsIgnoreCase("Disponível")
+                    status
             );
 
             booksList.add(book);

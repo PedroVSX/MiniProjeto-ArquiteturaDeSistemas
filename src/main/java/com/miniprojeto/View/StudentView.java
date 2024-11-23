@@ -26,7 +26,7 @@ public class StudentView {
     }
 
     public void searchStudentByName() {
-        System.out.println("Digite o nome do estudante: ");
+        System.out.print("Digite o nome do estudante: ");
         String name = input.getString();
 
         String response = controller.searchByName(name);
@@ -35,7 +35,7 @@ public class StudentView {
     }
 
     public void searchStudentByCourse() {
-        System.out.println("Digite o curso do estudante: ");
+        System.out.print("Digite o curso do estudante: ");
         String course = input.getString();
 
         String response = controller.searchByCourse(course);
@@ -44,7 +44,7 @@ public class StudentView {
     }
 
     public void searchStudentByModality() {
-        System.out.println("Digite a modalidade do estudante: ");
+        System.out.print("Digite a modalidade do estudante: ");
         String modality = input.getString();
 
         String response = controller.searchByModality(modality);
@@ -53,10 +53,10 @@ public class StudentView {
     }
 
     public void searchStudentByCourseAndModality() {
-        System.out.println("Digite o curso do estudante: ");
+        System.out.print("Digite o curso do estudante: ");
         String course = input.getString();
 
-        System.out.println("Digite a modalidade do estudante: ");
+        System.out.print("Digite a modalidade do estudante: ");
         String modality = input.getString();
 
         String response = controller.searchByCorseAndModality(course, modality);
@@ -70,6 +70,17 @@ public class StudentView {
 
         String response = controller.getStudentSubjects(id);
 
+        System.out.println("Disciplinas");
+        System.out.println(response);
+    }
+
+    public void getStudentReservedBooks() {
+        System.out.print("Digite o id do estudante: ");
+        int id = input.getInt();
+
+        String response = controller.getStudentReservedBooks(id);
+
+        System.out.println("Livros");
         System.out.println(response);
     }
 

@@ -17,8 +17,11 @@ public class ReservationService {
         Student student = studentService.getStudentsById(studentId).getFirst();
         Book book = libraryService.getBooksById(bookId).getFirst();
 
-        if (!student.getReservedBooks().contains(book)) {
+        boolean studentConditions = student.isActive() && !student.getReservedBooks().contains(book);
+
+        if (studentConditions && book.isAvailable()) {
             student.getReservedBooks().add(book);
+            book.setStatus(false);
             return true;
         }
 
@@ -29,8 +32,11 @@ public class ReservationService {
         Student student = studentService.getStudentsById(studentId).getFirst();
         Book book = libraryService.getBooksById(bookId).getFirst();
 
-        if (student.getReservedBooks().contains(book)) {
+        boolean studentConditions = student.isActive() && student.getReservedBooks().contains(book);
+
+        if (studentConditions && !book.isAvailable()) {
             student.getReservedBooks().remove(book);
+            book.setStatus(true);
             return true;
         }
 
