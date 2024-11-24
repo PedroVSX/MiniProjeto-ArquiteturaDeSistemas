@@ -27,7 +27,8 @@ public class Main {
         SubjectView subjectView = new SubjectView(subjectController, enrollmentController);
         LibraryView libraryView = new LibraryView(libraryController, reservationController);
 
-        Menu menu = new Menu(studentView, subjectView, libraryView);
+        MenuController menuController = new MenuController(studentView, subjectView, libraryView);
+        Menu menu = new Menu(menuController);
 
         menu.start();
     }
