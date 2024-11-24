@@ -5,9 +5,9 @@ import com.miniprojeto.Controller.ReservationController;
 
 public class LibraryView {
 
-    private LibraryController libraryController;
-    private ReservationController reservationController;
-    private InputHandler input = new InputHandler();
+    private final LibraryController libraryController;
+    private final ReservationController reservationController;
+    private final InputHandler input = new InputHandler();
 
     public LibraryView(LibraryController libraryController, ReservationController reservationController) {
         this.libraryController = libraryController;

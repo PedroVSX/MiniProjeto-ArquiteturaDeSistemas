@@ -7,15 +7,15 @@ import com.miniprojeto.Iterator.SubjectIterator;
 import com.miniprojeto.Model.Book;
 import com.miniprojeto.Model.Student;
 import com.miniprojeto.Model.Subject;
-import com.miniprojeto.Services.StudentService;
+import com.miniprojeto.Services.IStudentService;
 
 import java.util.List;
 
 public class StudentController {
 
-    private final StudentService service;
+    private final IStudentService service;
 
-    public StudentController(StudentService service) {
+    public StudentController(IStudentService service) {
         this.service = service;
     }
 

@@ -4,15 +4,15 @@ package com.miniprojeto.Controller;
 import com.miniprojeto.Iterator.BookIterator;
 import com.miniprojeto.Iterator.ModelIterator;
 import com.miniprojeto.Model.Book;
-import com.miniprojeto.Services.LibraryService;
+import com.miniprojeto.Services.ILibraryService;
 
 import java.util.List;
 
 public class LibraryController {
 
-    private final LibraryService service;
+    private final ILibraryService service;
 
-    public LibraryController(LibraryService service) {
+    public LibraryController(ILibraryService service) {
         this.service = service;
     }
 

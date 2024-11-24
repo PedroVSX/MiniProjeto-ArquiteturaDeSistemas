@@ -4,15 +4,15 @@ package com.miniprojeto.Controller;
 import com.miniprojeto.Iterator.ModelIterator;
 import com.miniprojeto.Iterator.SubjectIterator;
 import com.miniprojeto.Model.Subject;
-import com.miniprojeto.Services.SubjectService;
+import com.miniprojeto.Services.ISubjectService;
 
 import java.util.List;
 
 public class SubjectController {
 
-    private final SubjectService service;
+    private final ISubjectService service;
 
-    public SubjectController(SubjectService service) {
+    public SubjectController(ISubjectService service) {
         this.service = service;
     }
 

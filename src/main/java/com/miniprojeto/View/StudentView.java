@@ -4,8 +4,8 @@ import com.miniprojeto.Controller.StudentController;
 
 public class StudentView {
 
-    private StudentController controller;
-    private InputHandler input = new InputHandler();
+    private final StudentController controller;
+    private final InputHandler input = new InputHandler();
 
     public StudentView(StudentController studentController) {
         this.controller = studentController;

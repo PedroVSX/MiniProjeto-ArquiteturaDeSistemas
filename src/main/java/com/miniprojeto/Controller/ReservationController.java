@@ -4,7 +4,7 @@ import com.miniprojeto.Services.ReservationService;
 
 public class ReservationController {
 
-    private ReservationService service;
+    private final ReservationService service;
 
     public ReservationController(ReservationService reservationService) {
         this.service = reservationService;

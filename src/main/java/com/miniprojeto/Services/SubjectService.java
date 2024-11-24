@@ -9,18 +9,19 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubjectService {
+public class SubjectService implements ISubjectService {
 
-    private final String SUBJECT_API_URL = "https://sswfuybfs8.execute-api.us-east-2.amazonaws.com/disciplinaServico/msDisciplina";
     private final HttpClient client = HttpClient.newHttpClient();
     private final JsonParser<Subject> parser = new SubjectJsonParser();
-    private List<Subject> subjectList = new ArrayList<>();
+    private final List<Subject> subjectList = new ArrayList<>();
 
     public SubjectService() {
         loadAllSubjects();
     }
 
+    @Override
     public void loadAllSubjects() {
+        String SUBJECT_API_URL = "https://sswfuybfs8.execute-api.us-east-2.amazonaws.com/disciplinaServico/msDisciplina";
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(SUBJECT_API_URL))
                 .GET()
@@ -38,16 +39,19 @@ public class SubjectService {
         }
     }
 
+    @Override
     public List<Subject> getAllSubjects() {
         return subjectList;
     }
 
+    @Override
     public List<Subject> getSubjectsById(int id) {
         return subjectList.stream()
                 .filter(subject -> subject.getId() == id)
                 .toList();
     }
 
+    @Override
     public List<Subject> getSubjectsByName(String name) {
         return subjectList.stream()
                 .filter(subject -> subject.getName().equalsIgnoreCase(name))

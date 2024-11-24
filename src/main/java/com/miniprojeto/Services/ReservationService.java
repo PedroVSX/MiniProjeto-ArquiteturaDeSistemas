@@ -5,10 +5,10 @@ import com.miniprojeto.Model.Student;
 
 public class ReservationService {
 
-    private final StudentService studentService;
-    private final LibraryService libraryService;
+    private final IStudentService studentService;
+    private final ILibraryService libraryService;
 
-    public ReservationService(StudentService studentService, LibraryService libraryService) {
+    public ReservationService(IStudentService studentService, ILibraryService libraryService) {
         this.studentService = studentService;
         this.libraryService = libraryService;
     }

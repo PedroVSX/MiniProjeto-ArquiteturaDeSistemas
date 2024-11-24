@@ -6,9 +6,9 @@ import com.miniprojeto.Controller.SubjectController;
 
 public class SubjectView {
 
-    private SubjectController subjectController;
-    private EnrollmentController enrollmentController;
-    private InputHandler input = new InputHandler();
+    private final SubjectController subjectController;
+    private final EnrollmentController enrollmentController;
+    private final InputHandler input = new InputHandler();
 
     public SubjectView(SubjectController subjectController, EnrollmentController enrollmentController) {
         this.subjectController = subjectController;

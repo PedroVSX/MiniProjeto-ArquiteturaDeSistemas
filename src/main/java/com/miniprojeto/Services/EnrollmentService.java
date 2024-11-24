@@ -5,10 +5,10 @@ import com.miniprojeto.Model.Subject;
 
 public class EnrollmentService {
 
-    private final StudentService studentService;
-    private final SubjectService subjectService;
+    private final IStudentService studentService;
+    private final ISubjectService subjectService;
 
-    public EnrollmentService(StudentService studentService, SubjectService subjectService) {
+    public EnrollmentService(IStudentService studentService, ISubjectService subjectService) {
         this.studentService = studentService;
         this.subjectService = subjectService;
     }
